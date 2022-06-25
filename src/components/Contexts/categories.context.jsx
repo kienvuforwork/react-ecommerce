@@ -1,20 +1,25 @@
 import { createContext, useState, useEffect } from "react";
-import PRODUCTS from "../../shop-data";
+
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
+
 export const CategoriesContext = createContext({
   categoriesMap: {},
 });
 
 export const CategoriesProvider = ({ children }) => {
   const [categoriesMap, setCategoriesMap] = useState({});
-  const value = { categoriesMap };
+
   useEffect(() => {
-    const categoryMap = async () => {
-      const categoryMap = await getCategoriesAndDocuments("categories");
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments();
+      console.log(categoryMap);
       setCategoriesMap(categoryMap);
     };
-    categoryMap();
+
+    getCategoriesMap();
   }, []);
+
+  const value = { categoriesMap };
   return (
     <CategoriesContext.Provider value={value}>
       {children}

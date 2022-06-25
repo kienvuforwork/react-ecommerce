@@ -4,8 +4,8 @@ import Category from "../category/category.component";
 const Shop = () => {
   return (
     <Routes>
-      <Route index element={<CategoriesPreview></CategoriesPreview>}></Route>
-      <Route path=":category" element={<Category></Category>}></Route>
+      <Route index element={<CategoriesPreview />} />
+      <Route path=":category" element={<Category />} />
     </Routes>
   );
 };
